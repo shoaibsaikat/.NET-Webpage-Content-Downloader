@@ -38,6 +38,10 @@ namespace Web_Page_Content_Downloader
             this.textBoxTag = new System.Windows.Forms.TextBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
             this.labelAuthor = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.backgroundWorkerProgress = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorkerCancel = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCount)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,17 +119,47 @@ namespace Web_Page_Content_Downloader
             // labelAuthor
             // 
             this.labelAuthor.AutoSize = true;
-            this.labelAuthor.Location = new System.Drawing.Point(586, 113);
+            this.labelAuthor.Location = new System.Drawing.Point(178, 69);
             this.labelAuthor.Name = "labelAuthor";
             this.labelAuthor.Size = new System.Drawing.Size(33, 13);
             this.labelAuthor.TabIndex = 9;
             this.labelAuthor.Text = "None";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(181, 140);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(607, 23);
+            this.progressBar1.TabIndex = 10;
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Enabled = false;
+            this.buttonCancel.Location = new System.Drawing.Point(100, 140);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.TabIndex = 11;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // backgroundWorkerProgress
+            // 
+            this.backgroundWorkerProgress.WorkerReportsProgress = true;
+            this.backgroundWorkerProgress.WorkerSupportsCancellation = true;
+            this.backgroundWorkerProgress.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerProgress_DoWork);
+            // 
+            // backgroundWorkerCancel
+            // 
+            this.backgroundWorkerCancel.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerCancel_DoWork);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonCancel);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.labelAuthor);
             this.Controls.Add(this.richTextBoxOutput);
             this.Controls.Add(this.textBoxTag);
@@ -155,6 +189,10 @@ namespace Web_Page_Content_Downloader
         private System.Windows.Forms.TextBox textBoxTag;
         private System.Windows.Forms.RichTextBox richTextBoxOutput;
         private System.Windows.Forms.Label labelAuthor;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Button buttonCancel;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerProgress;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerCancel;
     }
 }
 
