@@ -75,6 +75,7 @@ namespace Web_Page_Content_Downloader
                 buttonDone.Enabled = false;
                 buttonCancel.Enabled = true;
                 Data = string.Empty;
+                richTextBoxOutput.Text = Data;
                 backgroundWorkerProgress.RunWorkerAsync();
             }
         }
@@ -133,7 +134,6 @@ namespace Web_Page_Content_Downloader
         private void backgroundWorkerProgress_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar1.Value = e.ProgressPercentage;
-            richTextBoxOutput.Text = Data;
         }
 
         // This event handler deals with the results of the background operation.
@@ -149,6 +149,7 @@ namespace Web_Page_Content_Downloader
             }
             buttonDone.Enabled = true;
             buttonCancel.Enabled = false;
+            richTextBoxOutput.Text = Data;
         }
 
         private void backgroundWorkerCancel_DoWork(object sender, DoWorkEventArgs e)
