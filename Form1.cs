@@ -16,6 +16,9 @@ namespace Web_Page_Content_Downloader
 {
     public partial class Form1 : Form
     {
+        private BackgroundWorker backgroundWorkerProgress;
+        private BackgroundWorker backgroundWorkerCancel;
+
         private String _data;
         private String Data
         {
@@ -32,8 +35,6 @@ namespace Web_Page_Content_Downloader
         {
             InitializeComponent();
 
-            labelAuthor.MaximumSize = new Size(300, 300);
-            labelAuthor.Text = "Developed by: Mina Shoaib Rahman\nMail: shoaibsaikat@gmail.com";
             Data = string.Empty;
 
             InitializeBackgroundWorker();
@@ -43,9 +44,17 @@ namespace Web_Page_Content_Downloader
         // attaching event handlers. 
         private void InitializeBackgroundWorker()
         {
+            backgroundWorkerProgress = new BackgroundWorker();
+            backgroundWorkerCancel = new BackgroundWorker();
+
+            backgroundWorkerProgress.WorkerSupportsCancellation = true;
+            backgroundWorkerProgress.WorkerReportsProgress = true;
+
             backgroundWorkerProgress.DoWork += new DoWorkEventHandler(backgroundWorkerProgress_DoWork);
             backgroundWorkerProgress.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerProgress_RunWorkerCompleted);
             backgroundWorkerProgress.ProgressChanged += new ProgressChangedEventHandler(backgroundWorkerProgress_ProgressChanged);
+
+            backgroundWorkerCancel.DoWork += new DoWorkEventHandler(backgroundWorkerCancel_DoWork);
         }
 
         private int lastPageIndex(String url)
@@ -148,6 +157,24 @@ namespace Web_Page_Content_Downloader
             {
                 backgroundWorkerProgress.CancelAsync();
             }
+        }
+
+        private void buttonCopy_Click(object sender, EventArgs e)
+        {
+            if (richTextBoxOutput != null && !string.IsNullOrWhiteSpace(richTextBoxOutput.Text))
+            {
+                Clipboard.SetText(richTextBoxOutput.Text);
+                MessageBox.Show("Data copied");
+            }
+            else
+            {
+                MessageBox.Show("Nothing to copy");
+            }
+        }
+
+        private void buttonAbout_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Developed by:\tMina Shoaib Rahman\nMail:\t\tshoaibsaikat@gmail.com");
         }
     }
 }

@@ -37,11 +37,10 @@ namespace Web_Page_Content_Downloader
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxTag = new System.Windows.Forms.TextBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
-            this.labelAuthor = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.backgroundWorkerProgress = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorkerCancel = new System.ComponentModel.BackgroundWorker();
+            this.buttonCopy = new System.Windows.Forms.Button();
+            this.buttonAbout = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCount)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,7 +78,7 @@ namespace Web_Page_Content_Downloader
             0,
             0});
             this.numericUpDownCount.Name = "numericUpDownCount";
-            this.numericUpDownCount.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownCount.Size = new System.Drawing.Size(60, 20);
             this.numericUpDownCount.TabIndex = 4;
             // 
             // buttonDone
@@ -88,7 +87,7 @@ namespace Web_Page_Content_Downloader
             this.buttonDone.Name = "buttonDone";
             this.buttonDone.Size = new System.Drawing.Size(75, 23);
             this.buttonDone.TabIndex = 5;
-            this.buttonDone.Text = "Done";
+            this.buttonDone.Text = "Process";
             this.buttonDone.UseVisualStyleBackColor = true;
             this.buttonDone.Click += new System.EventHandler(this.buttonDone_Click);
             // 
@@ -97,15 +96,15 @@ namespace Web_Page_Content_Downloader
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(16, 96);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 13);
+            this.label3.Size = new System.Drawing.Size(26, 13);
             this.label3.TabIndex = 6;
-            this.label3.Text = "HTML Tag Name";
+            this.label3.Text = "Tag";
             // 
             // textBoxTag
             // 
             this.textBoxTag.Location = new System.Drawing.Point(19, 113);
             this.textBoxTag.Name = "textBoxTag";
-            this.textBoxTag.Size = new System.Drawing.Size(100, 20);
+            this.textBoxTag.Size = new System.Drawing.Size(57, 20);
             this.textBoxTag.TabIndex = 7;
             // 
             // richTextBoxOutput
@@ -116,20 +115,11 @@ namespace Web_Page_Content_Downloader
             this.richTextBoxOutput.TabIndex = 8;
             this.richTextBoxOutput.Text = "";
             // 
-            // labelAuthor
-            // 
-            this.labelAuthor.AutoSize = true;
-            this.labelAuthor.Location = new System.Drawing.Point(178, 69);
-            this.labelAuthor.Name = "labelAuthor";
-            this.labelAuthor.Size = new System.Drawing.Size(33, 13);
-            this.labelAuthor.TabIndex = 9;
-            this.labelAuthor.Text = "None";
-            // 
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(181, 140);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(607, 23);
+            this.progressBar1.Size = new System.Drawing.Size(526, 22);
             this.progressBar1.TabIndex = 10;
             // 
             // buttonCancel
@@ -143,24 +133,35 @@ namespace Web_Page_Content_Downloader
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // backgroundWorkerProgress
+            // buttonCopy
             // 
-            this.backgroundWorkerProgress.WorkerReportsProgress = true;
-            this.backgroundWorkerProgress.WorkerSupportsCancellation = true;
-            this.backgroundWorkerProgress.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerProgress_DoWork);
+            this.buttonCopy.Location = new System.Drawing.Point(713, 140);
+            this.buttonCopy.Name = "buttonCopy";
+            this.buttonCopy.Size = new System.Drawing.Size(75, 23);
+            this.buttonCopy.TabIndex = 12;
+            this.buttonCopy.Text = "Copy";
+            this.buttonCopy.UseVisualStyleBackColor = true;
+            this.buttonCopy.Click += new System.EventHandler(this.buttonCopy_Click);
             // 
-            // backgroundWorkerCancel
+            // buttonAbout
             // 
-            this.backgroundWorkerCancel.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerCancel_DoWork);
+            this.buttonAbout.Location = new System.Drawing.Point(712, 1);
+            this.buttonAbout.Name = "buttonAbout";
+            this.buttonAbout.Size = new System.Drawing.Size(75, 23);
+            this.buttonAbout.TabIndex = 13;
+            this.buttonAbout.Text = "About";
+            this.buttonAbout.UseVisualStyleBackColor = true;
+            this.buttonAbout.Click += new System.EventHandler(this.buttonAbout_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonAbout);
+            this.Controls.Add(this.buttonCopy);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.labelAuthor);
             this.Controls.Add(this.richTextBoxOutput);
             this.Controls.Add(this.textBoxTag);
             this.Controls.Add(this.label3);
@@ -188,11 +189,10 @@ namespace Web_Page_Content_Downloader
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxTag;
         private System.Windows.Forms.RichTextBox richTextBoxOutput;
-        private System.Windows.Forms.Label labelAuthor;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button buttonCancel;
-        private System.ComponentModel.BackgroundWorker backgroundWorkerProgress;
-        private System.ComponentModel.BackgroundWorker backgroundWorkerCancel;
+        private System.Windows.Forms.Button buttonCopy;
+        private System.Windows.Forms.Button buttonAbout;
     }
 }
 
