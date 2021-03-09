@@ -117,4 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="author" xml:space="preserve">
+    <value>Mina Shoaib Rahman</value>
+  </data>
+  <data name="labelCopied" xml:space="preserve">
+    <value>Data copied</value>
+  </data>
+  <data name="labelDevelopedBy" xml:space="preserve">
+    <value>Developed By:</value>
+  </data>
+  <data name="labelMail" xml:space="preserve">
+    <value>Mail:</value>
+  </data>
+  <data name="labelNotCopied" xml:space="preserve">
+    <value>Nothing to copy</value>
+  </data>
+  <data name="mail" xml:space="preserve">
+    <value>shoaibsaikat@gmail.com</value>
+  </data>
 </root>

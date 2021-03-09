@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.IO;
-using HtmlAgilityPack;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
+using System.Resources;
+using System.Reflection;
 
 namespace Web_Page_Content_Downloader
 {
@@ -18,9 +19,10 @@ namespace Web_Page_Content_Downloader
     {
         private BackgroundWorker backgroundWorkerProgress;
         private BackgroundWorker backgroundWorkerCancel;
+        private ResourceManager rm;
 
-        private String _data;
-        private String Data
+        private string _data;
+        private string Data
         {
             get
             {
@@ -36,6 +38,7 @@ namespace Web_Page_Content_Downloader
             InitializeComponent();
 
             Data = string.Empty;
+            rm = new ResourceManager("Web_Page_Content_Downloader.Form1", Assembly.GetExecutingAssembly());
 
             InitializeBackgroundWorker();
         }
@@ -165,17 +168,19 @@ namespace Web_Page_Content_Downloader
             if (richTextBoxOutput != null && !string.IsNullOrWhiteSpace(richTextBoxOutput.Text))
             {
                 Clipboard.SetText(richTextBoxOutput.Text);
-                MessageBox.Show("Data copied");
+                MessageBox.Show(rm.GetString("labelCopied"));
             }
             else
             {
-                MessageBox.Show("Nothing to copy");
+                MessageBox.Show(rm.GetString("labelNotCopied"));
             }
         }
 
         private void buttonAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Developed by:\tMina Shoaib Rahman\nMail:\t\tshoaibsaikat@gmail.com");
+            string msg = rm.GetString("labelDevelopedBy") + "\t" + rm.GetString("author") + "\n" +
+                         rm.GetString("labelMail") + "\t\t" + rm.GetString("mail");
+            MessageBox.Show(msg);
         }
     }
 }
