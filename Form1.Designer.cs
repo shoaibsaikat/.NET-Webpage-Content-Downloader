@@ -47,7 +47,7 @@ namespace Web_Page_Content_Downloader
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(16, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 13);
             this.label1.TabIndex = 0;
@@ -55,15 +55,15 @@ namespace Web_Page_Content_Downloader
             // 
             // textBoxUrl
             // 
-            this.textBoxUrl.Location = new System.Drawing.Point(16, 30);
+            this.textBoxUrl.Location = new System.Drawing.Point(19, 30);
             this.textBoxUrl.Name = "textBoxUrl";
-            this.textBoxUrl.Size = new System.Drawing.Size(772, 20);
+            this.textBoxUrl.Size = new System.Drawing.Size(769, 20);
             this.textBoxUrl.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 53);
+            this.label2.Location = new System.Drawing.Point(16, 53);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 2;
@@ -71,7 +71,7 @@ namespace Web_Page_Content_Downloader
             // 
             // numericUpDownCount
             // 
-            this.numericUpDownCount.Location = new System.Drawing.Point(16, 69);
+            this.numericUpDownCount.Location = new System.Drawing.Point(19, 69);
             this.numericUpDownCount.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -94,7 +94,7 @@ namespace Web_Page_Content_Downloader
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 96);
+            this.label3.Location = new System.Drawing.Point(16, 97);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(26, 13);
             this.label3.TabIndex = 6;
@@ -145,7 +145,7 @@ namespace Web_Page_Content_Downloader
             // 
             // buttonAbout
             // 
-            this.buttonAbout.Location = new System.Drawing.Point(712, 1);
+            this.buttonAbout.Location = new System.Drawing.Point(713, 6);
             this.buttonAbout.Name = "buttonAbout";
             this.buttonAbout.Size = new System.Drawing.Size(75, 23);
             this.buttonAbout.TabIndex = 13;
