@@ -33,6 +33,31 @@ namespace Web_Page_Content_Downloader
                 _data = value;
             }
         }
+
+        private string _baseUrl;
+        private string BaseUrl
+        {
+            get
+            {
+                return _baseUrl;
+            }
+            set
+            {
+                _baseUrl = value;
+            }
+        }
+        private string _endUrl;
+        private string EndUrl
+        {
+            get
+            {
+                return _endUrl;
+            }
+            set
+            {
+                _endUrl = value;
+            }
+        }
         public Form1()
         {
             InitializeComponent();
@@ -58,17 +83,6 @@ namespace Web_Page_Content_Downloader
             backgroundWorkerProgress.ProgressChanged += new ProgressChangedEventHandler(backgroundWorkerProgress_ProgressChanged);
 
             backgroundWorkerCancel.DoWork += new DoWorkEventHandler(backgroundWorkerCancel_DoWork);
-        }
-
-        private int lastPageIndex(String url)
-        {
-            int i = url.Length - 1;
-            for (; i >= 0; i--)
-            {
-                if (url[i] < '0' || url[i] > '9')
-                    break;
-            }
-            return i;
         }
 
         private void buttonDone_Click(object sender, EventArgs e)
@@ -99,11 +113,17 @@ namespace Web_Page_Content_Downloader
             var url = textBoxUrl.Text;
             var tag = textBoxTag.Text;
 
-            var lastIndex = lastPageIndex(url);
-            var baseUrl = url.Remove(lastIndex + 1);
-
-            if (tag != null)
+            if (tag != null && url != null && numericUpDownPosition.Value != 0)
             {
+                var lastIndex = url.Length - numericUpDownPosition.Value;
+                int i = (int)lastIndex;
+
+                while (i < url.Length && url[i] >= '0' && url[i] <= '9')
+                    i++;
+
+                EndUrl = url.Substring(i);
+                BaseUrl = url.Remove((int)lastIndex);
+
                 using (WebClient client = new WebClient()) // WebClient class inherits IDisposable
                 {
                     var page = 1;
@@ -115,14 +135,14 @@ namespace Web_Page_Content_Downloader
                             e.Cancel = true;
                             break;
                         }
-                        Stream data = client.OpenRead(baseUrl + page);
+                        Stream data = client.OpenRead(BaseUrl + page + EndUrl);
                         StreamReader reader = new StreamReader(data);
                         string html = reader.ReadToEnd();
                         var htmlDoc = new HtmlDocument();
                         htmlDoc.LoadHtml(html);
 
                         var htmlData = htmlDoc.DocumentNode.SelectNodes("//" + tag).ToList();
-                        for (int i = 1; i < htmlData.Count; i++) // skip first row, as it's a header
+                        for (i = 1; i < htmlData.Count; i++) // skip first row, as it's a header
                         {
                             Data += htmlData[i].OuterHtml;
                         }
@@ -153,6 +173,7 @@ namespace Web_Page_Content_Downloader
             buttonDone.Enabled = true;
             buttonCancel.Enabled = false;
             richTextBoxOutput.Text = Data;
+            //richTextBoxOutput.Text = BaseUrl + "\n" + EndUrl;
         }
 
         private void backgroundWorkerCancel_DoWork(object sender, DoWorkEventArgs e)

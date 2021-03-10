@@ -41,7 +41,10 @@ namespace Web_Page_Content_Downloader
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonCopy = new System.Windows.Forms.Button();
             this.buttonAbout = new System.Windows.Forms.Button();
+            this.numericUpDownPosition = new System.Windows.Forms.NumericUpDown();
+            this.labelPosition = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPosition)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -57,7 +60,7 @@ namespace Web_Page_Content_Downloader
             // 
             this.textBoxUrl.Location = new System.Drawing.Point(19, 30);
             this.textBoxUrl.Name = "textBoxUrl";
-            this.textBoxUrl.Size = new System.Drawing.Size(769, 20);
+            this.textBoxUrl.Size = new System.Drawing.Size(688, 20);
             this.textBoxUrl.TabIndex = 1;
             // 
             // label2
@@ -111,7 +114,7 @@ namespace Web_Page_Content_Downloader
             // 
             this.richTextBoxOutput.Location = new System.Drawing.Point(19, 169);
             this.richTextBoxOutput.Name = "richTextBoxOutput";
-            this.richTextBoxOutput.Size = new System.Drawing.Size(769, 269);
+            this.richTextBoxOutput.Size = new System.Drawing.Size(769, 240);
             this.richTextBoxOutput.TabIndex = 8;
             this.richTextBoxOutput.Text = "";
             // 
@@ -145,7 +148,7 @@ namespace Web_Page_Content_Downloader
             // 
             // buttonAbout
             // 
-            this.buttonAbout.Location = new System.Drawing.Point(713, 6);
+            this.buttonAbout.Location = new System.Drawing.Point(713, 415);
             this.buttonAbout.Name = "buttonAbout";
             this.buttonAbout.Size = new System.Drawing.Size(75, 23);
             this.buttonAbout.TabIndex = 13;
@@ -153,11 +156,34 @@ namespace Web_Page_Content_Downloader
             this.buttonAbout.UseVisualStyleBackColor = true;
             this.buttonAbout.Click += new System.EventHandler(this.buttonAbout_Click);
             // 
+            // numericUpDownPosition
+            // 
+            this.numericUpDownPosition.Location = new System.Drawing.Point(713, 30);
+            this.numericUpDownPosition.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.numericUpDownPosition.Name = "numericUpDownPosition";
+            this.numericUpDownPosition.Size = new System.Drawing.Size(75, 20);
+            this.numericUpDownPosition.TabIndex = 15;
+            // 
+            // labelPosition
+            // 
+            this.labelPosition.AutoSize = true;
+            this.labelPosition.Location = new System.Drawing.Point(710, 9);
+            this.labelPosition.Name = "labelPosition";
+            this.labelPosition.Size = new System.Drawing.Size(88, 13);
+            this.labelPosition.TabIndex = 16;
+            this.labelPosition.Text = "Position from end";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.labelPosition);
+            this.Controls.Add(this.numericUpDownPosition);
             this.Controls.Add(this.buttonAbout);
             this.Controls.Add(this.buttonCopy);
             this.Controls.Add(this.buttonCancel);
@@ -174,6 +200,7 @@ namespace Web_Page_Content_Downloader
             this.Name = "Form1";
             this.Text = "Web Content Downloader";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPosition)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -193,6 +220,8 @@ namespace Web_Page_Content_Downloader
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonCopy;
         private System.Windows.Forms.Button buttonAbout;
+        private System.Windows.Forms.NumericUpDown numericUpDownPosition;
+        private System.Windows.Forms.Label labelPosition;
     }
 }
 
