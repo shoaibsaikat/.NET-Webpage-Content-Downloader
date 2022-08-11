@@ -167,6 +167,11 @@ namespace Web_Page_Content_Downloader
             this.numericUpDownPosition.Name = "numericUpDownPosition";
             this.numericUpDownPosition.Size = new System.Drawing.Size(75, 20);
             this.numericUpDownPosition.TabIndex = 15;
+            this.numericUpDownPosition.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // labelPosition
             // 

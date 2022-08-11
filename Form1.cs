@@ -108,7 +108,9 @@ namespace Web_Page_Content_Downloader
 
         private void backgroundWorkerProgress_DoWork(object sender, DoWorkEventArgs e)
         {
+            // Example url
             // http://mis.molwa.gov.bd/freedom-fighter-list?division_id=3&district_id=21&thana_id=192&page=189
+            //https://exp.bb.org.bd/ords/f?p=104:1::::::
             BackgroundWorker worker = sender as BackgroundWorker;
             var url = textBoxUrl.Text;
             var tag = textBoxTag.Text;
@@ -119,7 +121,9 @@ namespace Web_Page_Content_Downloader
                 int i = (int)lastIndex;
 
                 while (i < url.Length && url[i] >= '0' && url[i] <= '9')
+                {
                     i++;
+                }
 
                 EndUrl = url.Substring(i);
                 BaseUrl = url.Remove((int)lastIndex);
@@ -127,27 +131,53 @@ namespace Web_Page_Content_Downloader
                 using (WebClient client = new WebClient()) // WebClient class inherits IDisposable
                 {
                     var page = 1;
-                    var ratio = 100 / numericUpDownCount.Value;
-                    while (page <= numericUpDownCount.Value)
+                    if (numericUpDownCount.Value > 0)
                     {
-                        if (worker.CancellationPending)
+                        var ratio = 100 / numericUpDownCount.Value;
+                        while (page <= numericUpDownCount.Value)
                         {
-                            e.Cancel = true;
-                            break;
+                            if (worker.CancellationPending)
+                            {
+                                e.Cancel = true;
+                                break;
+                            }
+                            Stream data = client.OpenRead(BaseUrl + page + EndUrl);
+                            StreamReader reader = new StreamReader(data);
+                            string html = reader.ReadToEnd();
+                            var htmlDoc = new HtmlDocument();
+                            htmlDoc.LoadHtml(html);
+
+                            var htmlData = htmlDoc.DocumentNode.SelectNodes("//" + tag).ToList();
+                            for (i = 1; i < htmlData.Count; i++) // skip first row, as it's a header
+                            {
+                                Data += htmlData[i].OuterHtml;
+                            }
+                            worker.ReportProgress((int)(page * ratio));
+                            page++;
                         }
-                        Stream data = client.OpenRead(BaseUrl + page + EndUrl);
+                    }
+                    else
+                    {
+                        // I only want current page
+                        Stream data = client.OpenRead(url);
                         StreamReader reader = new StreamReader(data);
                         string html = reader.ReadToEnd();
                         var htmlDoc = new HtmlDocument();
                         htmlDoc.LoadHtml(html);
-
-                        var htmlData = htmlDoc.DocumentNode.SelectNodes("//" + tag).ToList();
-                        for (i = 1; i < htmlData.Count; i++) // skip first row, as it's a header
+                        try
                         {
-                            Data += htmlData[i].OuterHtml;
+                            var htmlData = htmlDoc.DocumentNode.SelectNodes("//" + tag).ToList();
+                            for (i = 1; i < htmlData.Count; i++) // skip first row, as it's a header
+                            {
+                                Data += htmlData[i].OuterHtml;
+                            }
                         }
-                        worker.ReportProgress((int)(page * ratio));
-                        page++;
+                        catch (Exception ex)
+                        {
+                            //Exception during parsing
+                            System.Console.WriteLine(ex.Message);
+                        }
+                        worker.ReportProgress(100);
                     }
                 }
             }
